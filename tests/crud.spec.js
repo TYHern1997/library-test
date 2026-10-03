@@ -50,3 +50,4 @@ test('admin can edit a book', async ({ page }) => {
     await page.getByRole('row', { name: newTitle }).locator('.btn-outline-danger').click();
     await expect(page.getByRole('cell', { name: newTitle })).toHaveCount(0);
 });
+
