@@ -11,7 +11,7 @@ End-to-end tests for the Readers Reserve library app, built with [Playwright](ht
 - **Books:** the book list loads, and search filters the results
 - **Login:** a user can sign in
 - **Borrow and return:** a user can borrow a book and return it
-- **Admin access:** the Users page is visible to admins only
+- **Admin access:** the Users list page is visible to admins only
 - **Admin CRUD:** an admin can add, edit and delete a book
 
 ## Run locally 
