@@ -14,7 +14,7 @@ End-to-end tests for the Readers Reserve library app, built with [Playwright](ht
 - **Admin access:** the Users page is visible to admins only
 - **Admin CRUD:** an admin can add, edit and delete a book
 
-## Run locallygit add .
+## Run locally 
 
 ```bash
 npm ci
