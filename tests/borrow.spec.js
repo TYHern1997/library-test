@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-const BASE = 'https://library-frontend-mu-nine.vercel.app';
-
 test.beforeEach(async ({ page }) => {
     await page.goto('https://library-frontend-mu-nine.vercel.app/auth');
     await page.getByLabel('Email').fill('kim@email.com');
@@ -15,11 +13,15 @@ test('user can see the book list after login', async ({ page }) => {
 });
 
 test('user can borrow and return a book', async ({ page }) => {
-    await page.getByRole('button', { name: 'Borrow' }).first().click();
+    const row = page.getByRole('row')
+        .filter({ has: page.getByRole('button', { name: 'Borrow' }) })
+        .first();
+    const title = (await row.getByRole('cell').first().textContent()).trim();
 
-    const returnBtn = page.getByRole('button', { name: 'Return' }).first();
-    await expect(returnBtn).toBeVisible();
+    await row.getByRole('button', { name: 'Borrow' }).click();
+    const bookRow = page.getByRole('row', { name: title });
+    await expect(bookRow.getByRole('button', { name: 'Return' })).toBeVisible();
 
-    await returnBtn.click();
-    await expect(page.getByRole('button', { name: 'Return' })).toHaveCount(0);
+    await bookRow.getByRole('button', { name: 'Return' }).click();
+    await expect(bookRow.getByRole('button', { name: 'Borrow' })).toBeVisible();
 });
